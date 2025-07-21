@@ -1,0 +1,24 @@
+<h2>我的申請紀錄</h2>
+<p>目前登入帳號：{{ user.username }}</p>
+<a href="{% url 'logout' %}">登出</a>
+<ul>
+  {% for app in applications %}
+    <li>
+      {{ app.account_name }} - {{ app.get_status_display }} - {{ app.submitted_at }}<br>
+      {% if app.status == 'REJECTED' %}<b>拒絕原因:</b> {{ app.rejection_reason }}{% endif %}
+      {% if app.status == 'ADDITIONAL' %}
+        <a href="{% url 'supplement_info' app.id %}">補件</a> - {{ app.additional_requirements }}
+      {% endif %}
+      {% if app.status == 'APPROVED' %}
+        <a href="{% url 'approved_page' %}">查看恭喜頁</a>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <h2>{{ message }}</h2>
+    {% endfor %}
+  </ul>
+{% endif %}

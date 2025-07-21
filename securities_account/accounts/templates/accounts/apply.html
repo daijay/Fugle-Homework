@@ -1,0 +1,14 @@
+<h2>{{ title }}</h2>
+<p>目前登入帳號：{{ user.username }}</p>
+<a href="{% url 'logout' %}">登出</a>
+<form method="post">{% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">送出申請</button>
+</form>
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
