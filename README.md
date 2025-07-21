@@ -7,6 +7,9 @@
 請依下列步驟使用 `uv` 建立虛擬環境並安裝：
 
 ```bash
+# 進入專案執行目錄
+cd securities_account
+
 # 建立虛擬環境，指定 Python 版本
 uv venv .venv --python=python3.10
 
